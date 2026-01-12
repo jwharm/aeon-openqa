@@ -121,3 +121,15 @@ openqa-cli api -X POST isos \
          ARCH=x86_64 \
          HDD_1_DECOMPRESS_URL=https://download.opensuse.org/tumbleweed/appliances/Aeon-Installer.x86_64.raw.xz
 ```
+
+# Next steps
+
+1. PR for `https://github.com/os-autoinst/os-autoinst-distri-opensuse` with products/aeon, lib/Distribution, tests/aeon
+2. PR for `https://github.com/os-autoinst/os-autoinst-needles-opensuse` to add the Aeon needles
+3. PR for `https://github.com/os-autoinst/openQA` to update the `openqa-bootstrap` script
+
+4. Add tests:
+    - Check if the default installed apps run
+    - Test reboot and shutdown
+    - Any other tests to verify system functionality
+    - Test updating to a new snapshot (how?)
