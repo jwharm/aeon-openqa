@@ -2,6 +2,10 @@
 
 Pull request: https://github.com/os-autoinst/os-autoinst-distri-opensuse/pull/24395
 
+Needles: https://github.com/os-autoinst/os-autoinst-needles-opensuse/pull/851
+
+---
+
 Below are my notes and workarounds.
 
 ## Create a distrobox
@@ -126,12 +130,13 @@ openqa-cli api -X POST isos \
 
 # Next steps
 
-1. PR for `https://github.com/os-autoinst/os-autoinst-distri-opensuse` with products/aeon, lib/Distribution, tests/aeon
-2. PR for `https://github.com/os-autoinst/os-autoinst-needles-opensuse` to add the Aeon needles
+1. ~~PR for `https://github.com/os-autoinst/os-autoinst-distri-opensuse` with products/aeon, lib/Distribution, tests/aeon~~
+2. ~~PR for `https://github.com/os-autoinst/os-autoinst-needles-opensuse` to add the Aeon needles~~
 3. PR for `https://github.com/os-autoinst/openQA` to update the `openqa-bootstrap` script
 
-4. Add tests:
+4. Add more tests:
     - Check if the default installed apps run
     - Test reboot and shutdown
-    - Any other tests to verify system functionality
-    - Test updating to a new snapshot (how?)
+    - Test disk selection on a system with more than one hdd
+    - Test updating to a new snapshot
+    - Test reinstallation while preserving /home
