@@ -1,5 +1,7 @@
 # Instructions to setup and run Aeon openQA tests
 
+Pull request: https://github.com/os-autoinst/os-autoinst-distri-opensuse/pull/24395
+
 Below are my notes and workarounds.
 
 ## Create a distrobox
