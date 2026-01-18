@@ -51,17 +51,17 @@ First, create the "aeon" product under products/aeon:
 sudo mkdir /var/lib/openqa/tests/opensuse/products/aeon
 ```
 
-Copy the files `templates` and `main.pm` and the complete `needles` directory from the `products/aeon` directory in this repo to the directory `/var/lib/openqa/tests/opensuse/products/aeon` that you just created.
+Copy the files `templates` and `main.pm` from the `products/aeon` directory in this repo to the directory `/var/lib/openqa/tests/opensuse/products/aeon` that you just created.
 
-* **TODO:** The needles are in a separate directory for now, but I want to change this into a symlink to the opensuse needles, and add the aeon needles there.
+Copy the needles to `/var/lib/openqa/tests/opensuse/products/opensuse/needles`.
+
+Change the owner of the needles. This is required to be able to overwrite them with new needles in the needle editor of the openQA web UI:
+
+```
+sudo chown -R geekotest:geekotest /var/lib/openqa/tests/opensuse/products/opensuse/needles/*
+```
 
 Run the `templates` script. It is a shell script, so you can execute "`./templates`" and it will add the definitions to the openQA database.
-
-Change the owner of the needles directory. This is required to save changes in the needle editor of the openQA web UI:
-
-```
-sudo chown -R geekotest:geekotest /var/lib/openqa/tests/opensuse/products/aeon/needles
-```
 
 Create lib/Distribution/Aeon directory:
 
@@ -79,7 +79,7 @@ Create `tests/aeon` directory:
 sudo mkdir /var/lib/openqa/share/tests/opensuse/tests/aeon
 ```
 
-Copy `installer.pm` and `firstboot.pm` into this directory. These scripts contain the actual tests, and are called from the `main.pm` script we copied earlier.
+Copy `tik.pm` and `firstboot.pm` into this directory. These scripts contain the actual tests, and are called from the `main.pm` script we copied earlier.
 
 Finally, create an `aeon` symlink to osado. A similar link is already present for `sle`.
 
@@ -89,26 +89,11 @@ sudo ln -s opensuse /var/lib/openqa/share/tests/aeon
 
 ## Run the tests
 
-### Option 1: Manually download the image
-
-Download the `Aeon-Installer.x86_64.raw.xz`, extract it, and copy the `.raw` file into `/var/lib/openqa/share/factory/hdd/`. (Do NOT copy it into `/iso`, that doesn't work.)
-
-Run the tests:
-
-```
-openqa-cli api -X POST isos \
-         DISTRI=aeon \
-         VERSION=RC3 \
-         FLAVOR=DVD \
-         ARCH=x86_64 \
-         HDD_1=Aeon-Installer.x86_64.raw
-```
-
-### Option 2: Automatically download the image
+### First run: Automatically download the image
 
 To start a test with the online hosted installer image, we must first allow `opensuse.org` as a safe domain in `openqa.ini`:
 
-* Copy `etc/01-enable-download.ini` into `/etc/openqa/openqa.ini.d/`
+* Copy `etc/openqa/01-enable-download.ini` into `/etc/openqa/openqa.ini.d/`
 * Run `sudo systemctl restart openqa-gru openqa-worker@1 openqa-webui` to load the new config
 
 Run the test, same as above, but use the `HDD_1_DECOMPRESS_URL` argument to download and decompress the image:
@@ -117,9 +102,24 @@ Run the test, same as above, but use the `HDD_1_DECOMPRESS_URL` argument to down
 openqa-cli api -X POST isos \
          DISTRI=aeon \
          VERSION=RC3 \
-         FLAVOR=DVD \
+         FLAVOR=IMAGE \
          ARCH=x86_64 \
+         NEEDLES_DIR=/var/lib/openqa/tests/opensuse/products/opensuse/needles \
          HDD_1_DECOMPRESS_URL=https://download.opensuse.org/tumbleweed/appliances/Aeon-Installer.x86_64.raw.xz
+```
+
+### Subsequent runs: Use the downloaded the image
+
+The image was extracted into `/var/lib/openqa/share/factory/hdd/` and we can reuse it:
+
+```
+openqa-cli api -X POST isos \
+         DISTRI=aeon \
+         VERSION=RC3 \
+         FLAVOR=IMAGE \
+         ARCH=x86_64 \
+         NEEDLES_DIR=/var/lib/openqa/tests/opensuse/products/opensuse/needles \
+         HDD_1=Aeon-Installer.x86_64.raw
 ```
 
 # Next steps

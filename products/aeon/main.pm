@@ -17,7 +17,7 @@ my $distri = testapi::get_required_var('CASEDIR') . '/lib/susedistribution.pm';
 require $distri;
 testapi::set_distribution(DistributionProvider->provide());
 
-loadtest 'aeon/installer';
+loadtest 'aeon/tik';
 loadtest 'aeon/firstboot';
 
 1;

@@ -8,30 +8,30 @@ sub run {
     my $encryption_passphrase = 'the encryption passphrase';
 
     # wait for welcome screen to appear, this can take a while
-    assert_screen 'welcome-to-aeon', 600;
+    assert_screen 'tik-welcome', 600;
 
     # click the welcome screen, to close the GNOME Overview
-    assert_and_click 'welcome-to-aeon';
+    assert_and_click 'tik-welcome';
 
     # press "Install Now"
     send_key 'ret';
 
     # ignore warning about tpm
-    assert_screen 'installer-warning-no-tpm';
+    assert_screen 'tik-warning-no-tpm';
     send_key 'ret';
 
     # confirm disk erasure
-    assert_and_click 'confirm-erase-disk';
+    assert_and_click 'tik-confirm-erase-disk';
 
     # deploy
-    assert_screen 'deploying-image';
+    assert_screen 'tik-deploying-image';
 
     # give the deployment some time, wait for the encryption info screen
-    assert_screen 'set-encryption-passphrase-1', 600;
+    assert_screen 'tik-set-encryption-passphrase-1', 600;
     send_key 'ret';
 
     # input a passphrase
-    assert_screen 'set-encryption-passphrase-2';
+    assert_screen 'tik-set-encryption-passphrase-2';
     type_string $encryption_passphrase;
     send_key 'ret';
     wait_still_screen 3;
@@ -41,11 +41,11 @@ sub run {
     send_key 'ret';
 
     # confirm the encryption recovery key
-    assert_screen 'encryption-recovery-key';
+    assert_screen 'tik-encryption-recovery-key';
     send_key 'ret';
 
     # confirm reboot
-    assert_screen 'installation-complete';
+    assert_screen 'tik-installation-complete';
     send_key 'ret';
 }
 

@@ -1,6 +1,6 @@
 # SUSE's openQA tests
 #
-# Copyright 2019-2021 SUSE LLC
+# Copyright 2019-2025 SUSE LLC
 # SPDX-License-Identifier: FSFAP
 
 # Summary: The class represents Aeon RC3 distribution and provides access to
@@ -12,6 +12,5 @@ package Distribution::Aeon::RC3;
 use strict;
 use warnings FATAL => 'all';
 use parent 'Distribution::Opensuse::Tumbleweed';
-
 
 1;
