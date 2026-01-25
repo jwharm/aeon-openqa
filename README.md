@@ -136,10 +136,11 @@ openqa-cli api -X POST isos \
 
 1. ~~PR for `https://github.com/os-autoinst/os-autoinst-distri-opensuse` with products/aeon, lib/Distribution, tests/aeon~~
 2. ~~PR for `https://github.com/os-autoinst/os-autoinst-needles-opensuse` to add the Aeon needles~~
-3. PR for `https://github.com/os-autoinst/openQA` to update the `openqa-bootstrap` script
+3. ~~PR for `https://github.com/os-autoinst/openQA` to update the `openqa-bootstrap` script~~
 
 4. Add more tests:
     - Check if the default installed apps run
+    - Create and enter distrobox
     - Test reboot and shutdown
     - Test disk selection on a system with more than one hdd
     - Test updating to a new snapshot
