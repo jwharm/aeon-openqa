@@ -4,6 +4,10 @@ Pull request: https://github.com/os-autoinst/os-autoinst-distri-opensuse/pull/24
 
 Needles: https://github.com/os-autoinst/os-autoinst-needles-opensuse/pull/851
 
+Trigger from OBS: https://github.com/os-autoinst/openqa-trigger-from-obs/pull/333
+
+openQA bootstrap script: https://github.com/os-autoinst/openQA/pull/6929
+
 ---
 
 Below are my notes and workarounds.
